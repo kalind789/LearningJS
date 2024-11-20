@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Makes sure the body takes up the full viewport height */
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+    width: 90%;
+    max-width: 600px;
+    max-height: 700px;
+    padding: 40px;
+}
+#form{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 40px;
+    width: 100%;
+}
+input[type="text"],
+input[type="submit"] {
+    padding: 10px;
+    border: 1px solid #ccc; /* Adds a border around inputs */
+    border-radius: 5px; /* Adds rounded corners */
+    font-size: 16px;
+    width: 100%; /* Ensures input elements are full width */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+input[type="submit"] {
+    background-color: #4CAF50; /* Adds a green background */
+    color: white;
+    cursor: pointer;
+    border: none;
+    width: 50px;
+    transition: background-color 0.3s ease;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}

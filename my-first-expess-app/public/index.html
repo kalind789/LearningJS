@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Static File Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- <h1 id="welcome-text">Welcome to My Node.js Server</h1>
+    <button id="myButton">Click Me</button>
+    <button id="undoButton">Undo</button> -->
+    <div class="container">
+        <form action="/users" method="POST" id="form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age"  required />
+            <button type="submit">Submit</button>
+            <p id="error-message" style="color: red; display: none;"></p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
