@@ -23,14 +23,18 @@ app.post('/submit', express.urlencoded({extended: true}), (req, res) => {
     res.send(`Received data:<br>Name: ${name}<br>Age: ${age}`);
 })
 
+app.get('/users-list', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'users.html'));
+});
+
 app.get('/users', (req, res) => {
     res.json(users);
-});
+})
 
 app.post('/users', express.urlencoded({extended: true}), (req, res) => {
     const {name, age} = req.body;
     users.push({'name': name, 'age': age})
-    res.send(`Received data:<br>Name: ${name}<br>Age: ${age}`);
+    res.redirect('/users-list');
 });
 
 app.listen(PORT, () => {

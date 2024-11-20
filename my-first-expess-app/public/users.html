@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+        }
+        .user{
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="users-list"></div>
+    <script>
+        async function getUsers(){
+            try{
+                const userListDiv = document.getElementById('users-list');
+                const response = await fetch('http://localhost:8080/users');
+                const usersList = await response.json();
+
+                if (usersList.length == 0){
+                    userListDiv.innerHTML = '<p>No users found :(</p>';
+                    return;
+                }
+
+                usersList.forEach(user => {
+                    const userListDivChild = document.createElement('div');
+                    userListDivChild.className = 'user';
+                    userListDivChild.innerHTML = `Name: ${user.name} <br> Age: ${user.age}`;
+                    userListDiv.appendChild(userListDivChild);
+                });
+            }catch(error){
+                const userListDiv = document.getElementById('users-list');
+                userListDiv.innerHTML = '<p>Error Fetching Data :(</p>';
+                console.error('Error fetching users: ', error);
+            }
+        }
+        
+        getUsers();
+    </script>
+</body>
+</html>
