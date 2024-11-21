@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/create-task" method="POST" id="task-form">
+        <label for="task-name">Task Name: </label>
+        <input type="text" id="task-name-input" name="taskName" />
+        <label for="task-desc">Task Description: </label>
+        <input type="text" id="task-desc-input" name="taskDesc" />
+        <button type="submit">Create Task</button>
+        <p id="error-message" style="color: red; display: none;"></p>
+    </form>
+    <a href="/">Back Home</a>
+
+    <script>
+        const taskForm = document.getElementById('task-form');
+
+        taskForm.addEventListener('submit', (event) => {
+            const taskName = document.getElementById('task-name-input').value.trim();
+            const taskDesc = document.getElementById('task-desc-input').value.trim();
+            const errorMessage = document.getElementById('error-message');
+
+            if (taskDesc === '' || taskName === ''){
+                event.preventDefault();
+                errorMessage.innerText = 'Both fields must have a value';
+                errorMessage.style.display = 'block';
+                return;
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of tasks</h2>
+    <div id="task-container"></div>
+    <a href="/">Back Home</a>
+
+    <script>
+        const taskContainer = document.getElementById('task-container');
+        async function getTasks(){
+            try{
+                const response = await fetch('http://localhost:8080/tasks');
+                const tasks = await response.json();
+                
+                if (tasks.length == 0){
+                        taskContainer.innerHTML = '<p>No tasks found :(</p>';
+                        return;
+                }
+                
+                tasks.forEach(task => {
+                    const taskDiv = document.createElement('div');
+                    taskDiv.className = 'task-item';
+                    taskDiv.innerHTML = `<p>Task name: ${task.taskName} <br> Task Description: ${task.taskDesc}.`;
+                    taskContainer.appendChild(taskDiv);
+                });
+            }catch(error){
+                taskContainer.innerText = 'failed to get information';
+                console.error('The error was', error);
+            }
+        }
+
+        getTasks();
+    </script>
+</body>
+</html>
